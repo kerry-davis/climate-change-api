@@ -55,6 +55,14 @@ app.get('/news', (req, res) => {
   res.json(articles)
 })
 
+app.get('/news/:newspaperId', async (req, res) => {
+  const newspaperId = req.params.newspaperId
+
+  const filteredNews = articles.filter(article => article.source == newspaperId)
+  res.json(filteredNews)
+
+})
+
 app.get('/newstest', (req, res) => {
   axios.get('https://www.theguardian.com/environment/climate-crisis')
     .then((response) => {
